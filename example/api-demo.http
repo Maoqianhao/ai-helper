@@ -1,0 +1,13 @@
+### Routing chat (SSE)
+GET http://localhost:8081/api/ai/chat/routing?memoryId=1001&message=你好
+Accept: text/event-stream
+
+### Orchestrator chat (SSE)
+GET http://localhost:8081/api/ai/chat/orchestrator?memoryId=1001&message=帮我写一个科幻小说大纲
+Accept: text/event-stream
+
+### Clear session memory
+DELETE http://localhost:8081/api/memory/clear/1001
+
+### Query session history
+GET http://localhost:8081/api/memory/history/1001

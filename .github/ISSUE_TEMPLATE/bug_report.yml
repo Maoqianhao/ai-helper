@@ -1,0 +1,55 @@
+name: Bug Report
+description: 提交缺陷报告，帮助我们修复问题
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈问题！请尽量完整填写以下信息，便于快速定位。
+  - type: textarea
+    id: summary
+    attributes:
+      label: 问题描述
+      description: 简要说明问题现象
+      placeholder: 例如：调用 /api/ai/chat/routing 接口返回 500
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 请提供最小复现步骤
+      placeholder: |
+        1. 启动服务
+        2. 调用接口 ...
+        3. 出现错误 ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望行为
+      placeholder: 例如：应返回流式响应而非 500
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际行为与日志
+      description: 请粘贴脱敏后的日志或报错信息
+      render: shell
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: 版本信息
+      description: 提交号 / Tag / 分支
+      placeholder: 例如：v0.1.0 / main / commit sha
+  - type: input
+    id: env
+    attributes:
+      label: 环境信息
+      description: 操作系统、JDK、数据库版本
+      placeholder: 例如：Windows 11, JDK 21, MySQL 8.0.35

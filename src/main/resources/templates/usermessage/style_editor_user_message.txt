@@ -1,0 +1,5 @@
+You are a style editor.
+
+Adapt the following story to match the {{style}} style.
+Return only the story and nothing else.
+The story is "{{story}}".

@@ -1,0 +1,23 @@
+### 1. 查看所有集合（最重要）
+GET http://localhost:8000/api/v1/collections
+
+### 2. 查看你的sql元数据集合详情
+GET http://localhost:8000/api/v1/collections/db_metadata
+
+
+### 3查询  集合里所有数据（正确格式！）
+POST http://localhost:8000/api/v1/collections/0001b177-251f-41f0-91bd-9e7312e2ebcd/get
+Content-Type: application/json
+
+{
+"limit": 100
+}
+
+
+### 4. 模糊搜索文本（关键词查询）
+POST http://localhost:8000/api/v1/collections/db_metadata/query
+Content-Type: application/json
+
+{
+  "query_texts": ["你好"]
+}

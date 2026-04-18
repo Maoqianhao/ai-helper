@@ -1,0 +1,22 @@
+### 1. 查看所有集合（最重要）
+GET http://localhost:8000/api/v1/collections
+
+### 2. 查看你的聊天记忆集合详情（chat_memories 是你配置的名字）
+GET http://localhost:8000/api/v1/collections/chat_memories
+
+
+### 3. 查询 chat_memories 集合里所有数据（标准格式）
+POST http://localhost:8000/api/v1/collections/chat_memories/get
+Content-Type: application/json
+
+{
+  "limit": 100
+}
+
+### 4. 模糊搜索文本（关键词查询）
+POST http://localhost:8000/api/v1/collections/chat_memories/query
+Content-Type: application/json
+
+{
+  "query_texts": ["你好"]
+}

@@ -1,0 +1,35 @@
+name: Feature Request
+description: 提交新功能建议
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        欢迎提出功能建议，请尽量描述清楚业务场景与收益。
+  - type: textarea
+    id: problem
+    attributes:
+      label: 背景与痛点
+      description: 当前遇到的问题是什么
+      placeholder: 例如：现有 routing 模式无法满足复杂多轮创作
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 建议方案
+      description: 你期望的功能形态
+      placeholder: 例如：新增某个 agent 或策略开关
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 可选方案
+      description: 是否有替代方案或权衡点
+  - type: textarea
+    id: extra
+    attributes:
+      label: 其他补充
+      description: 包含参考资料、截图、样例链接等

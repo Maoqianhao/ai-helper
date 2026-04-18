@@ -1,0 +1,107 @@
+spring:
+  application:
+    name: ai-helper
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/hmdp?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:change-me}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+server:
+  port: ${SERVER_PORT:8081}
+  servlet:
+    context-path: /api
+langchain4j:
+  community:
+    dashscope:
+      chat-model:
+        model-name: ${DASHSCOPE_MODEL_NAME:qwen-plus-2025-07-28}
+        api-key: ${DASHSCOPE_API_KEY:replace-with-your-dashscope-api-key}
+      streaming-chat-model:
+        model-name: ${DASHSCOPE_MODEL_NAME:qwen-plus-2025-07-28}
+        api-key: ${DASHSCOPE_API_KEY:replace-with-your-dashscope-api-key}
+bigmodel:
+  api-key: ${ZHIPU_API_KEY:replace-with-your-zhipu-api-key}
+gaodemodel:
+  api-key: ${AMAP_API_KEY:replace-with-your-amap-api-key}
+logging:
+  pattern:
+    level: "%5p [traceId:%X{traceId:-N/A}]"
+  level:
+    "[dev.langchain4j]": INFO
+    "[com.example.aihelper]": INFO
+
+# Chroma 向量数据库配置
+chroma:
+  base-url: ${CHROMA_BASE_URL:http://localhost:8000}
+  memory-collection-name: ${CHROMA_MEMORY_COLLECTION:chat_memories}
+  metadata-collection-name: ${CHROMA_METADATA_COLLECTION:db_metadata}
+
+# 小说创作智能体配置
+novel-agent:
+  max-iterations-per-state: 3  # 每个状态最多迭代次数
+  max-global-iterations: 20    # 全局最多迭代次数
+  text-truncate-length: 500    # 文本截断长度
+  reasoning-truncate-length: 300  # 推理文本截断长度
+
+# MCP 客户端配置（用于替代 McpConfig 中的硬编码路径）
+mcp:
+  node-home: "${NODE_HOME:D:\\nodejs}"
+  npx-executable: ${NPX_EXECUTABLE:npx.cmd}
+  log-events: ${MCP_LOG_EVENTS:false}
+
+app:
+  cors:
+    allow-credentials: false
+    allowed-origin-patterns: http://localhost:*,http://127.0.0.1:*
+
+metadata:
+  vectorize-on-startup: ${METADATA_VECTORIZE_ON_STARTUP:true}
+  async-initialization: ${METADATA_ASYNC_INITIALIZATION:true}
+
+# SQL 工具安全护栏配置
+sql-guard:
+  write-operation-hints:
+    - "delete "
+    - "update "
+    - "insert "
+    - "drop "
+    - "truncate "
+    - "alter "
+    - "create "
+    - "replace "
+    - "grant "
+    - "revoke "
+
+# 路由防误调（可选覆盖默认值）
+route-guard:
+  sql-keywords:
+    - "sql"
+    - "数据库"
+    - "表"
+    - "查询"
+    - "统计"
+    - "报表"
+    - "mysql"
+    - "count"
+  amap-keywords:
+    - "地图"
+    - "天气"
+    - "路线"
+    - "导航"
+    - "位置"
+    - "附近"
+    - "高德"
+    - "路况"
+  interview-keywords:
+    - "面试"
+    - "刷题"
+    - "题目"
+    - "问答"
+    - "八股"
+    - "模拟面试"
+    - "算法题"
+
+# 轻量鉴权配置（MVP）
+auth:
+  token-ttl-hours: ${AUTH_TOKEN_TTL_HOURS:72}
+  password-salt: ${AUTH_PASSWORD_SALT:please-change-me}

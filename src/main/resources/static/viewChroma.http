@@ -1,0 +1,26 @@
+### 1. 查看所有集合（最重要）
+GET http://localhost:8000/api/v1/collections
+
+### 2. 查看你的聊天记忆集合详情（chat_memories 是你配置的名字）
+GET http://localhost:8000/api/v1/collections/db_metadata
+GET http://localhost:8000/api/v1/collections/chat_memories
+
+### 3. 删除 db_metadata 集合（重新向量化前执行）
+DELETE http://localhost:8000/api/v1/collections/db_metadata
+
+### 4. 查询 db_metadata 集合里所有数据（正确格式！）
+POST http://localhost:8000/api/v1/collections/{{db_metadata_uuid}}/get
+Content-Type: application/json
+Accept: application/json
+
+{
+  "include": ["metadatas", "documents"]
+}
+
+### 5. 模糊搜索文本（关键词查询）
+POST http://localhost:8000/api/v1/collections/chat_memories/query
+Content-Type: application/json
+
+{
+  "query_texts": ["你好"]
+}

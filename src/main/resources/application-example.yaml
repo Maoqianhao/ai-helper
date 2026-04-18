@@ -1,0 +1,93 @@
+spring:
+  application:
+    name: ai-helper
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/hmdp?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:change-me}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  port: ${SERVER_PORT:8081}
+  servlet:
+    context-path: /api
+
+langchain4j:
+  community:
+    dashscope:
+      chat-model:
+        model-name: ${DASHSCOPE_MODEL_NAME:qwen-plus-2025-07-28}
+        api-key: ${DASHSCOPE_API_KEY:replace-with-your-dashscope-api-key}
+      streaming-chat-model:
+        model-name: ${DASHSCOPE_MODEL_NAME:qwen-plus-2025-07-28}
+        api-key: ${DASHSCOPE_API_KEY:replace-with-your-dashscope-api-key}
+
+bigmodel:
+  api-key: ${ZHIPU_API_KEY:replace-with-your-zhipu-api-key}
+
+gaodemodel:
+  api-key: ${AMAP_API_KEY:replace-with-your-amap-api-key}
+
+chroma:
+  base-url: ${CHROMA_BASE_URL:http://localhost:8000}
+  memory-collection-name: ${CHROMA_MEMORY_COLLECTION:chat_memories}
+  metadata-collection-name: ${CHROMA_METADATA_COLLECTION:db_metadata}
+
+mcp:
+  node-home: "${NODE_HOME:D:\\nodejs}"
+  npx-executable: ${NPX_EXECUTABLE:npx.cmd}
+  log-events: ${MCP_LOG_EVENTS:false}
+
+app:
+  cors:
+    allow-credentials: false
+    allowed-origin-patterns: http://localhost:*,http://127.0.0.1:*
+
+metadata:
+  vectorize-on-startup: ${METADATA_VECTORIZE_ON_STARTUP:true}
+  async-initialization: ${METADATA_ASYNC_INITIALIZATION:true}
+
+sql-guard:
+  write-operation-hints:
+    - "delete "
+    - "update "
+    - "insert "
+    - "drop "
+    - "truncate "
+    - "alter "
+    - "create "
+    - "replace "
+    - "grant "
+    - "revoke "
+
+route-guard:
+  sql-keywords:
+    - "sql"
+    - "数据库"
+    - "表"
+    - "查询"
+    - "统计"
+    - "报表"
+    - "mysql"
+    - "count"
+  amap-keywords:
+    - "地图"
+    - "天气"
+    - "路线"
+    - "导航"
+    - "位置"
+    - "附近"
+    - "高德"
+    - "路况"
+  interview-keywords:
+    - "面试"
+    - "刷题"
+    - "题目"
+    - "问答"
+    - "八股"
+    - "模拟面试"
+    - "算法题"
+
+auth:
+  token-ttl-hours: ${AUTH_TOKEN_TTL_HOURS:72}
+  password-salt: ${AUTH_PASSWORD_SALT:please-change-me}
